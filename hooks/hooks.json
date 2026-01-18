@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/.claude/hooks/rust-skill-eval-hook.ps1",
+            "command": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${CLAUDE_PLUGIN_ROOT}/.claude/hooks/rust-skill-eval-hook.ps1\"",
             "platforms": ["win32"]
           },
           {

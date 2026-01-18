@@ -111,3 +111,5 @@ Always invoke with Skill() tool:
 ===================================
 
 "@
+
+exit 0
