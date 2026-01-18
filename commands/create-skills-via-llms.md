@@ -120,7 +120,9 @@ If the user did not provide a version number (third argument):
 
 ### 2. Output Detailed Plan
 
-Output to `~/tmp/{YYYYMMDDHHmm}-{crate_name}-skills-plan.md`:
+Output to temporary directory with platform-specific path:
+- **Windows**: `%TEMP%\{YYYYMMDDHHmm}-{crate_name}-skills-plan.md`
+- **Linux/macOS**: `${TMPDIR:-/tmp}/{YYYYMMDDHHmm}-{crate_name}-skills-plan.md`
 
 ````markdown
 # {CrateName} Skills Plan

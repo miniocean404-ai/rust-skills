@@ -161,8 +161,9 @@ timestamp=$(date +%Y%m%d%H%M)
 # Determine crate name from URL
 # e.g., https://docs.rs/tokio/latest/tokio/ → tokio
 
-# Save location
-~/tmp/${timestamp}-{crate_name}-llms.txt
+# Save location (platform-specific)
+Windows: %TEMP%\${timestamp}-{crate_name}-llms.txt
+Linux/macOS: ${TMPDIR:-/tmp}/${timestamp}-{crate_name}-llms.txt
 ```
 
 Inform the user of the file path after output is complete.

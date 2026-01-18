@@ -64,7 +64,9 @@ search_actions("{crate_name} llms.txt")
 If found:
 ```
 get_action_by_id(action_id)
-# Save content to ~/tmp/{crate_name}-llms.txt
+# Save content to temporary directory (platform-specific)
+# Windows: %TEMP%\{crate_name}-llms.txt
+# Linux/macOS: ${TMPDIR:-/tmp}/{crate_name}-llms.txt
 ```
 
 #### 4b. Generate llms.txt if not in actionbook

@@ -88,7 +88,8 @@ Claude:
 1. Identify: Third-party crate "tokio"
 2. Execute: /create-llms-for-skills https://docs.rs/tokio/latest/tokio/
 3. Wait for llms.txt generation
-4. Execute: /create-skills-via-llms tokio ~/tmp/{timestamp}-tokio-llms.txt
+4. Execute: /create-skills-via-llms tokio <temp_dir>/{timestamp}-tokio-llms.txt
+   (temp_dir: Windows=%TEMP%, Linux/macOS=${TMPDIR:-/tmp})
 ```
 
 ### Example 2: Create Std Library Skill
@@ -100,7 +101,8 @@ Claude:
 1. Identify: Std library traits
 2. Execute: /create-llms-for-skills https://doc.rust-lang.org/std/marker/trait.Send.html https://doc.rust-lang.org/std/marker/trait.Sync.html
 3. Wait for llms.txt generation
-4. Execute: /create-skills-via-llms std-marker ~/tmp/{timestamp}-std-marker-llms.txt
+4. Execute: /create-skills-via-llms std-marker <temp_dir>/{timestamp}-std-marker-llms.txt
+   (temp_dir: Windows=%TEMP%, Linux/macOS=${TMPDIR:-/tmp})
 ```
 
 ### Example 3: Custom URL
