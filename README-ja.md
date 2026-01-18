@@ -64,7 +64,7 @@ claude --plugin-dir /path/to/rust-skills
 ```bash
 # クローンして skills をコピー
 git clone https://github.com/ZhangHanDong/rust-skills.git
-cp -r rust-skills/skills/* ~/.claude/skills/
+cp -r rust-skills/skills/* .claude/skills/
 ```
 
 > ⚠️ **注意**：hooks がない場合、メタ認知は自動的にトリガーされません。`/rust-router` または特定の skills を手動で呼び出す必要があります。
@@ -203,12 +203,12 @@ cd my-rust-project
 # すべての依存関係を同期
 /sync-crate-skills
 
-# Skills は ~/.claude/skills/{crate}/ に作成されます
+# Skills は .claude/skills/{crate}/ に作成されます
 ```
 
 ### 特徴
 - **オンデマンド生成**: Cargo.toml 依存関係から作成
-- **ローカルストレージ**: `~/.claude/skills/`
+- **ローカルストレージ**: `.claude/skills/`
 - **バージョン追跡**: 各 skill が crate バージョンを記録
 - **ワークスペースサポート**: すべてのワークスペースメンバーを解析
 

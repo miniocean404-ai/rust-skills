@@ -120,9 +120,8 @@ If the user did not provide a version number (third argument):
 
 ### 2. Output Detailed Plan
 
-Output to temporary directory with platform-specific path:
-- **Windows**: `%TEMP%\{YYYYMMDDHHmm}-{crate_name}-skills-plan.md`
-- **Linux/macOS**: `${TMPDIR:-/tmp}/{YYYYMMDDHHmm}-{crate_name}-skills-plan.md`
+Output to project directory:
+- `.claude/rust-skills-cache/plans/{YYYYMMDDHHmm}-{crate_name}-skills-plan.md`
 
 ````markdown
 # {CrateName} Skills Plan
@@ -151,7 +150,7 @@ For each skill:
 
 1. **Create directory structure**:
    ```
-   ~/.claude/skills/{crate_name}-{feature}/
+   .claude/skills/{crate_name}-{feature}/
    ├── SKILL.md
    └── references/
        ├── {api-reference}.md
@@ -198,12 +197,12 @@ For each skill:
 - [ ] Complex content has been split into references/ directory
 - [ ] Code examples use latest Rust idioms
 - [ ] No redundant documentation files (README.md, etc.)
-- [ ] Skills created directly in `~/.claude/skills/` for auto-discovery
+- [ ] Skills created directly in `.claude/skills/` for auto-discovery
 
 ---
 
 ## Output Location
 
-All skills are created in: `~/.claude/skills/{crate_name}-*/`
+All skills are created in: `.claude/skills/{crate_name}-*/`
 
 This is the local dynamic skills directory, not committed to the rust-skills repository.

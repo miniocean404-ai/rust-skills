@@ -8,7 +8,7 @@ argument-hint: [crate_name] [--check-only] [--remove-invalid]
 Check dynamic skills for missing reference files and fix them.
 
 Arguments: $ARGUMENTS
-- `crate_name`: Specific crate to check (optional, defaults to all crates in ~/.claude/skills/)
+- `crate_name`: Specific crate to check (optional, defaults to all crates in .claude/skills/)
 - `--check-only`: Only report issues, don't fix
 - `--remove-invalid`: Remove references to non-existent files instead of creating them
 
@@ -20,10 +20,10 @@ Arguments: $ARGUMENTS
 
 ```bash
 # If crate_name provided
-skill_dir=~/.claude/skills/{crate_name}
+skill_dir=.claude/skills/{crate_name}
 
 # Otherwise scan all
-for dir in ~/.claude/skills/*/; do
+for dir in .claude/skills/*/; do
     # Process each skill
 done
 ```

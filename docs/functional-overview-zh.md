@@ -128,7 +128,7 @@
 ### 存储策略
 
 ```
-~/.claude/skills/           ← 全局 (常用 crate)
+.claude/skills/           ← 项目级 (常用 crate)
 ├── tokio/
 │   ├── SKILL.md
 │   └── references/
@@ -146,7 +146,7 @@
 
 | 场景 | 存储位置 | 示例 |
 |------|----------|------|
-| 常用 crate | 全局 `~/.claude/skills/` | tokio, serde, ratatui, std |
+| 常用 crate | 项目 `.claude/skills/` | tokio, serde, ratatui, std |
 | 项目特定依赖 | 项目 `.claude/skills/` | sqlx, 业务 crate |
 | 临时学习 | 项目级，用完删除 | 试用新 crate |
 
@@ -184,7 +184,7 @@
 │     └─ 无 → 从 docs.rs 抓取生成         │
 │     │                                    │
 │     ▼                                    │
-│ 写入 ~/.claude/skills/{crate}/          │
+│ 写入 .claude/skills/{crate}/            │
 └─────────────────────────────────────────┘
 
 方式二：手动为特定 crate 生成
@@ -205,7 +205,7 @@
 ### 生成的 Skill 结构
 
 ```
-~/.claude/skills/tokio/
+.claude/skills/tokio/
 ├── SKILL.md              # 主 skill 文件
 │   ├── 触发关键词
 │   ├── 核心概念
@@ -223,7 +223,7 @@
 对于复杂 crate，采用**父子结构**：
 
 ```
-~/.claude/skills/
+.claude/skills/
 ├── tokio/                 # 父 Skill: 广泛触发，概览
 │   ├── SKILL.md
 │   └── references/

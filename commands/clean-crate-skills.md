@@ -18,7 +18,7 @@ Arguments: $ARGUMENTS
 ### 1. List Current Skills
 
 ```bash
-ls -la ~/.claude/skills/
+ls -la .claude/skills/
 ```
 
 Display current skills:
@@ -34,14 +34,14 @@ Local crate skills:
 **If specific crates provided:**
 ```bash
 # Remove specified crate skill directories
-rm -rf ~/.claude/skills/{crate_name}
-rm -rf ~/.claude/skills/{crate_name}-*  # Remove sub-skills (e.g., tokio-task, tokio-sync)
+rm -rf .claude/skills/{crate_name}
+rm -rf .claude/skills/{crate_name}-*  # Remove sub-skills (e.g., tokio-task, tokio-sync)
 ```
 
 **If `--all` flag:**
 ```bash
 # Remove all crate skills (be careful not to remove non-crate skills)
-rm -rf ~/.claude/skills/{crate_name}*
+rm -rf .claude/skills/{crate_name}*
 ```
 
 **If no arguments:**
@@ -91,6 +91,6 @@ Remaining skills: axum
 
 ## Safety Notes
 
-- This only removes skills from `~/.claude/skills/`
+- This only removes skills from `.claude/skills/`
 - Does not affect the rust-skills repository
 - Skills can be regenerated with `/sync-crate-skills`

@@ -27,7 +27,7 @@ Use available tools to get doc.rust-lang.org content.
 
 ## Cache
 
-Location: `~/.claude/cache/rust-docs/std/{module}/{item}.json`
+Location: `.claude/rust-skills-cache/rust-docs/std/{module}/{item}.json`
 TTL: 30 days (std is stable)
 
 ## Output

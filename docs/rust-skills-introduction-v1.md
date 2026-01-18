@@ -79,7 +79,7 @@ cd my-async-project
 系统会：
 1. 解析 `Cargo.toml` 中的依赖
 2. 为每个依赖生成专属 Skill
-3. 存储在 `~/.claude/skills/` 目录
+3. 存储在 `.claude/skills/` 目录
 
 生成的 tokio Skill 长这样：
 

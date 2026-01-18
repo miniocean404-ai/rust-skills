@@ -14,23 +14,23 @@
 
 1. **Skill references 目录**（如果 skill 存在）
    ```
-   ~/.claude/skills/{crate}/references/{item}.md
+   .claude/skills/{crate}/references/{item}.md
    ```
 
 2. **全局缓存目录**（fallback）
    ```
-   ~/.claude/cache/rust-docs/{source}/{path}.json
+   .claude/rust-skills-cache/rust-docs/{source}/{path}.json
    ```
 
 ### 路径映射
 
 | 文档类型 | 缓存路径 |
 |----------|----------|
-| docs.rs crate | `~/.claude/cache/rust-docs/docs.rs/{crate}/{item}.json` |
-| std library | `~/.claude/cache/rust-docs/std/{module}/{item}.json` |
-| releases.rs | `~/.claude/cache/rust-docs/releases.rs/{version}.json` |
-| lib.rs | `~/.claude/cache/rust-docs/lib.rs/{crate}.json` |
-| clippy | `~/.claude/cache/rust-docs/clippy/{lint}.json` |
+| docs.rs crate | `.claude/rust-skills-cache/rust-docs/docs.rs/{crate}/{item}.json` |
+| std library | `.claude/rust-skills-cache/rust-docs/std/{module}/{item}.json` |
+| releases.rs | `.claude/rust-skills-cache/rust-docs/releases.rs/{version}.json` |
+| lib.rs | `.claude/rust-skills-cache/rust-docs/lib.rs/{crate}.json` |
+| clippy | `.claude/rust-skills-cache/rust-docs/clippy/{lint}.json` |
 
 ## 缓存格式
 

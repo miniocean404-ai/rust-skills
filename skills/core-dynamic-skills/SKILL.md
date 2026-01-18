@@ -11,7 +11,7 @@ Orchestrates on-demand generation of crate-specific skills based on project depe
 ## Concept
 
 Dynamic skills are:
-- Generated locally at `~/.claude/skills/`
+- Generated locally at `.claude/skills/`
 - Based on Cargo.toml dependencies
 - Created using llms.txt from docs.rs
 - Versioned and updatable
@@ -42,7 +42,7 @@ Cargo.toml
 Parse dependencies
     ↓
 For each crate:
-  ├─ Check ~/.claude/skills/{crate}/
+  ├─ Check .claude/skills/{crate}/
   ├─ If missing: Check actionbook for llms.txt
   │     ├─ Found: /create-skills-via-llms
   │     └─ Not found: /create-llms-for-skills first
@@ -52,7 +52,7 @@ For each crate:
 ## Local Skills Directory
 
 ```
-~/.claude/skills/
+.claude/skills/
 ├── tokio/
 │   ├── SKILL.md
 │   └── references/

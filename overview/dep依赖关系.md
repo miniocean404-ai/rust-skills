@@ -552,13 +552,13 @@ skills/, index/ (维护目标)
     - 缓存未命中则 WebFetch
     ↓
 5. 生成动态技能
-    - 写入 ~/.claude/skills/{crate}/SKILL.md
+    - 写入 .claude/skills/{crate}/SKILL.md
     ↓
 6. 输出结果
     - 报告生成的技能列表
 ```
 
-**涉及文件夹**: commands → agents → cache → 外部 (~/.claude/skills/)
+**涉及文件夹**: commands → agents → cache → 外部 (.claude/skills/)
 
 ---
 

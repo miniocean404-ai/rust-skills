@@ -64,7 +64,7 @@ claude --plugin-dir /path/to/rust-skills
 ```bash
 # 克隆并复制 skills
 git clone https://github.com/ZhangHanDong/rust-skills.git
-cp -r rust-skills/skills/* ~/.claude/skills/
+cp -r rust-skills/skills/* .claude/skills/
 ```
 
 > ⚠️ **注意**：没有 hooks，元认知不会自动触发。需要手动调用 `/rust-router` 或特定 skills。
@@ -203,12 +203,12 @@ cd my-rust-project
 # 同步所有依赖
 /sync-crate-skills
 
-# Skills 创建在 ~/.claude/skills/{crate}/
+# Skills 创建在 .claude/skills/{crate}/
 ```
 
 ### 特性
 - **按需生成**: 从 Cargo.toml 依赖创建
-- **本地存储**: `~/.claude/skills/`
+- **本地存储**: `.claude/skills/`
 - **版本追踪**: 每个 skill 记录 crate 版本
 - **Workspace 支持**: 解析所有 workspace 成员
 

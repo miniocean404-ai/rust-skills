@@ -19,7 +19,7 @@ Arguments: $ARGUMENTS
 
 ```bash
 # Check if skill exists
-cat ~/.claude/skills/{crate_name}*/SKILL.md | head -20
+cat .claude/skills/{crate_name}*/SKILL.md | head -20
 ```
 
 Display current version info if exists:
@@ -42,7 +42,7 @@ Or use crate-researcher agent to get latest version.
 ### 3. Remove Old Skill
 
 ```bash
-rm -rf ~/.claude/skills/{crate_name}*
+rm -rf .claude/skills/{crate_name}*
 ```
 
 ### 4. Generate Fresh llms.txt
@@ -64,7 +64,7 @@ Updated skill:
 - Crate: tokio
 - Old Version: 1.38.0
 - New Version: 1.40.0
-- Location: ~/.claude/skills/tokio/
+- Location: .claude/skills/tokio/
 ```
 
 ---

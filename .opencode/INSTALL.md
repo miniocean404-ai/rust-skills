@@ -9,14 +9,14 @@
 git clone https://github.com/ZhangHanDong/rust-skills.git
 
 # Copy to your OpenCode plugins directory
-cp -r rust-skills/.opencode/plugin ~/.opencode/plugins/rust-skills
+cp -r rust-skills/.opencode/plugin .opencode/plugins/rust-skills
 ```
 
 ### Option 2: Symlink
 
 ```bash
-git clone https://github.com/ZhangHanDong/rust-skills.git ~/rust-skills
-ln -s ~/rust-skills/.opencode/plugin ~/.opencode/plugins/rust-skills
+git clone https://github.com/ZhangHanDong/rust-skills.git rust-skills
+ln -s rust-skills/.opencode/plugin .opencode/plugins/rust-skills
 ```
 
 ## What's Included

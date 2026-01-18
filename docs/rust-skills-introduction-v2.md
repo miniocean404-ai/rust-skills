@@ -88,7 +88,7 @@ cd my-async-project
 系统会自动完成：
 1. 解析 `Cargo.toml` 中的所有依赖
 2. 为每个 crate 生成包含最新文档的专属 Skill
-3. 存储到本地 `~/.claude/skills/` 目录
+3. 存储到本地 `.claude/skills/` 目录
 
 生成的 Skill 会被自动触发。当你询问 "tokio spawn 怎么用" 时，AI 将基于最新的 tokio 1.49 文档给出准确答案，而非过时的"记忆"。
 

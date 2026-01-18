@@ -5,7 +5,7 @@ Documentation cache helper for agents.
 ## Cache Directory
 
 ```
-~/.claude/cache/rust-docs/
+.claude/rust-skills-cache/rust-docs/
 ├── docs.rs/{crate}/{item}.json
 ├── std/{module}/{item}.json
 ├── releases.rs/{version}.json

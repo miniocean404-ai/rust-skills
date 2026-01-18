@@ -41,7 +41,7 @@ Arguments: $ARGUMENTS
 Check if recent cache exists:
 
 ```bash
-cache_dir=~/.claude/cache/rust-daily/
+cache_dir=.claude/rust-skills-cache/rust-daily/
 cache_file=${cache_dir}/report-{date}-{time_range}-{category}.json
 
 # If cache exists and < 4 hours old, use cached data
@@ -94,7 +94,7 @@ Display the report in markdown format:
 Save results for faster subsequent queries:
 
 ```bash
-mkdir -p ~/.claude/cache/rust-daily/
+mkdir -p .claude/rust-skills-cache/rust-daily/
 # Save JSON with metadata
 ```
 
@@ -182,7 +182,7 @@ mkdir -p ~/.claude/cache/rust-daily/
 ---
 
 📊 **Summary:** 12 ecosystem posts, 4 official announcements, 2 foundation updates
-🔄 **Refresh:** `/rust-daily` | 📅 **Archive:** `~/.claude/cache/rust-daily/`
+🔄 **Refresh:** `/rust-daily` | 📅 **Archive:** `.claude/rust-skills-cache/rust-daily/`
 ```
 
 ---

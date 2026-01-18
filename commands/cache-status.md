@@ -86,7 +86,7 @@ done
 ```
 === Rust Docs Cache Status ===
 
-Location: ~/.claude/cache/rust-docs
+Location: .claude/rust-skills-cache/rust-docs
 
 std: 45 items, 1.2M (expired: 3)
 docs.rs: 128 items, 4.5M (expired: 12)

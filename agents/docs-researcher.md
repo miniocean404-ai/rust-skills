@@ -14,7 +14,7 @@ Use available tools to get docs.rs content:
 
 ## Cache
 
-Location: `~/.claude/cache/rust-docs/docs.rs/{crate}/{item}.json`
+Location: `.claude/rust-skills-cache/rust-docs/docs.rs/{crate}/{item}.json`
 TTL: 7 days
 
 Skip cache if user says "refresh", "force", or "--force".

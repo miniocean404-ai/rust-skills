@@ -25,10 +25,10 @@ Check and fix missing reference files in dynamic skills.
 
 ```bash
 # If crate_name provided
-skill_dir=~/.claude/skills/{crate_name}
+skill_dir=.claude/skills/{crate_name}
 
 # Otherwise scan all
-for dir in ~/.claude/skills/*/; do
+for dir in .claude/skills/*/; do
     # Process each skill
 done
 ```

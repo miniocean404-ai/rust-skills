@@ -73,10 +73,10 @@ description: |
 
 ### 结构
 
-动态生成的 crate skills 直接放在 `~/.claude/skills/` 下，Claude Code 自动扫描：
+动态生成的 crate skills 直接放在 `.claude/skills/` 下，Claude Code 自动扫描：
 
 ```bash
-~/.claude/skills/
+.claude/skills/
 ├── tokio/
 │   ├── SKILL.md
 │   └── references/
@@ -352,7 +352,7 @@ Refer to the local files for detailed documentation:
 |------|----------|
 | CSO 优化 | "CRITICAL:" 前缀 + 多语言触发词 |
 | 分布式触发 | 每个 skill 独立可触发 |
-| 符号链接 | 动态 skills 需要链接到 ~/.claude/skills/ |
+| 符号链接 | 动态 skills 需要链接到 .claude/skills/ |
 | 文档检查 | 读取失败时提示用户更新 |
 | 工具优先级 | "PREFER" 而非 "DO NOT" |
 | TDD | 先写压力场景，再写 skill |

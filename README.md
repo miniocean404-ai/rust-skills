@@ -64,7 +64,7 @@ This method only installs skills without hooks. You need to manually invoke skil
 ```bash
 # Clone and copy skills
 git clone https://github.com/ZhangHanDong/rust-skills.git
-cp -r rust-skills/skills/* ~/.claude/skills/
+cp -r rust-skills/skills/* .claude/skills/
 ```
 
 > ⚠️ **Note**: Without hooks, meta-cognition won't trigger automatically. You must manually call `/rust-router` or specific skills.
@@ -203,12 +203,12 @@ cd my-rust-project
 # Sync all dependencies
 /sync-crate-skills
 
-# Skills are created at ~/.claude/skills/{crate}/
+# Skills are created at .claude/skills/{crate}/
 ```
 
 ### Features
 - **On-demand generation**: Created from Cargo.toml dependencies
-- **Local storage**: `~/.claude/skills/`
+- **Local storage**: `.claude/skills/`
 - **Version tracking**: Each skill records crate version
 - **Workspace support**: Parses all workspace members
 

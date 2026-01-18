@@ -31,7 +31,7 @@
 ┌───────────────────────┐       ┌───────────────────────────────────┐
 │    静态 Skills 层      │       │         动态 Skills 层             │
 │                        │       │                                    │
-│  skills/               │       │  ~/.claude/skills/ (全局)          │
+│  skills/               │       │  .claude/skills/ (项目级)          │
 │  ├── m01-m07 (L1)     │       │  ├── tokio/                        │
 │  ├── m09-m15 (L2)     │       │  ├── serde/                        │
 │  ├── domain-* (L3)    │       │  └── std/                          │
@@ -244,7 +244,7 @@ skills/m0x-* + skills/domain-*
 │                                                          │
 │  插件 Skills (rust-skills/)      用户 Skills             │
 │  ┌────────────────────┐         ┌────────────────────┐  │
-│  │ skills/            │         │ ~/.claude/skills/  │  │
+│  │ skills/            │         │ .claude/skills/    │  │
 │  │ - 元认知框架       │         │ - tokio            │  │
 │  │ - 领域约束         │         │ - serde            │  │
 │  │ - 编码规范         │         │ - std              │  │
@@ -424,7 +424,7 @@ skills/
 
 | 场景 | 存储位置 |
 |------|----------|
-| 常用 crate (tokio, serde, std) | `~/.claude/skills/` |
+| 常用 crate (tokio, serde, std) | `.claude/skills/` |
 | 项目特定依赖 | `项目/.claude/skills/` |
 | 临时学习 | 项目级，用完删除 |
 
@@ -433,7 +433,7 @@ skills/
 对于复杂的 crate，采用 **父子 Skill** 结构：
 
 ```
-~/.claude/skills/
+.claude/skills/
 ├── tokio/                     # 父 Skill (入口)
 │   ├── SKILL.md              # 广泛触发词，概览性内容
 │   └── references/
@@ -509,11 +509,11 @@ edition = "2024"   # 所有子 Skill 共享
 
 ```bash
 # 1. 创建父 Skill
-~/.claude/skills/tokio/SKILL.md
-~/.claude/skills/tokio/references/rust-defaults.md
+.claude/skills/tokio/SKILL.md
+.claude/skills/tokio/references/rust-defaults.md
 
 # 2. 创建子 Skills，symlink 共享规则
-cd ~/.claude/skills/tokio-task/references
+cd .claude/skills/tokio-task/references
 ln -s ../../tokio/references/rust-defaults.md .
 
 # 3. 子 Skill 引用共享规则
@@ -610,7 +610,7 @@ description: "CRITICAL: Use for [domain]. Triggers on: keyword1, keyword2"
 | 强制层 | rust-skill-eval-hook.sh/ps1 (平台自动选择) | 注入元认知指令 |
 | 路由层 | rust-router | 识别层级，双技能加载 |
 | 知识层 | skills/* | 认知框架，决策指引 |
-| 扩展层 | ~/.claude/skills/ | 动态生成的 crate skills |
+| 扩展层 | .claude/skills/ | 动态生成的 crate skills |
 | 数据层 | agents/* | 实时获取最新信息 |
 | 缓存层 | cache/ | 减少重复请求 |
 

@@ -46,7 +46,7 @@ serde = "1.0"
 
 For each crate, check if skill exists:
 ```bash
-ls ~/.claude/skills/{crate_name}/SKILL.md
+ls .claude/skills/{crate_name}/SKILL.md
 ```
 
 If `--force` flag is set, skip this check.
@@ -64,9 +64,8 @@ search_actions("{crate_name} llms.txt")
 If found:
 ```
 get_action_by_id(action_id)
-# Save content to temporary directory (platform-specific)
-# Windows: %TEMP%\{crate_name}-llms.txt
-# Linux/macOS: ${TMPDIR:-/tmp}/{crate_name}-llms.txt
+# Save content to project directory
+# .claude/rust-skills-cache/llms/{crate_name}-llms.txt
 ```
 
 #### 4b. Generate llms.txt if not in actionbook
@@ -91,7 +90,7 @@ Synced skills for:
 - serde (1.0.215) - created
 - axum (0.7.9) - already exists, skipped
 
-Skills location: ~/.claude/skills/
+Skills location: .claude/skills/
 ```
 
 ---
@@ -130,6 +129,6 @@ Skills location: ~/.claude/skills/
 
 ## Output Location
 
-All skills are created in: `~/.claude/skills/`
+All skills are created in: `.claude/skills/`
 
 This is the local dynamic skills directory, not committed to repositories.

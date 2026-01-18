@@ -22,12 +22,12 @@ Claude Code 的 Skills 是独立的：
 
 ## 方案 A: 符号链接 + 显式读取
 
-**适用**: 本地个人 skills（`~/.claude/skills/`）
+**适用**: 本地个人 skills（`.claude/skills/`）
 
 ### 目录结构
 
 ```
-~/.claude/skills/
+.claude/skills/
 ├── _shared/                          # 共享文件目录
 │   ├── rust-defaults.md              # Rust 通用规则
 │   └── python-defaults.md            # Python 通用规则
@@ -52,10 +52,10 @@ Claude Code 的 Skills 是独立的：
 
 ```bash
 # 1. 创建共享目录
-mkdir -p ~/.claude/skills/_shared
+mkdir -p .claude/skills/_shared
 
 # 2. 创建共享规则文件
-cat > ~/.claude/skills/_shared/rust-defaults.md << 'EOF'
+cat > .claude/skills/_shared/rust-defaults.md << 'EOF'
 # Rust Code Generation Defaults
 
 ## Cargo.toml
@@ -69,8 +69,8 @@ EOF
 
 # 3. 为每个 skill 创建符号链接
 for skill in tokio tokio-task tokio-sync serde axum; do
-    mkdir -p ~/.claude/skills/$skill/references
-    ln -sf ../../_shared/rust-defaults.md ~/.claude/skills/$skill/references/rust-defaults.md
+    mkdir -p .claude/skills/$skill/references
+    ln -sf ../../_shared/rust-defaults.md .claude/skills/$skill/references/rust-defaults.md
 done
 ```
 
@@ -258,7 +258,7 @@ EOF
 
 ```bash
 # 使用方案 A
-~/.claude/skills/
+.claude/skills/
 ├── _shared/rust-defaults.md
 ├── tokio/references/rust-defaults.md → ...
 ├── tokio-task/references/rust-defaults.md → ...
