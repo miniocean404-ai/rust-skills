@@ -99,12 +99,25 @@ EOF
 - Claude 收到的不是单纯的用户问题
 - 而是: **用户问题 + Hook 注入的元认知指令**
 - 强制 Claude 按照指定流程思考和输出
+- **关键**: Hook 脚本明确要求 Claude 首先调用 `Skill(rust-router)` 进行路由
+
+**Hook 脚本中的关键指令:**
+```bash
+## SKILLS TO INVOKE
+
+Always invoke with Skill() tool:
+- Skill(rust-router) - First, to get routing  # ← 强制首先调用 rust-router
+- Skill(m0x-xxx) - Layer 1 skill based on error
+- Skill(domain-xxx) - Layer 3 skill based on domain keywords
+```
 
 ---
 
 ### 3️⃣ **路由层** - rust-router 技能
 
-当 Hook 触发后,Claude 会首先调用 `rust-router` 技能进行路由:
+**触发方式**: Hook 脚本注入的指令明确要求 Claude 首先调用 `Skill(rust-router)`
+
+当 Hook 触发后,Claude 会按照 Hook 脚本的指令首先调用 `rust-router` 技能进行路由:
 
 #### rust-router 的职责:
 
@@ -161,6 +174,7 @@ EOF
 │ - 强制识别层级和领域                      │
 │ - 强制加载 Skills                        │
 │ - 强制输出格式                           │
+│ - 强制首先调用 Skill(rust-router)        │
 └──────────────┬──────────────────────────┘
                │
                ▼
@@ -233,12 +247,27 @@ EOF
 - 在 Claude 思考前注入
 - 使用 "MANDATORY", "CRITICAL" 等强制词
 - 明确要求输出格式
+- **关键**: 明确要求首先调用 `Skill(rust-router)` 进行路由
 
 ✅ **双技能加载策略**
 - 不只是修复编译错误
 - 同时考虑领域最佳实践
 
-### 3. **跨平台支持**
+### 3. **rust-router 如何被触发?**
+
+✅ **Hook 脚本中的明确指令**
+```bash
+## SKILLS TO INVOKE
+
+Always invoke with Skill() tool:
+- Skill(rust-router) - First, to get routing
+```
+
+- Hook 脚本注入的指令要求 Claude 首先调用 `Skill(rust-router)`
+- rust-router 分析问题后,再决定加载哪些具体的技能
+- 这确保了路由逻辑始终被执行
+
+### 4. **跨平台支持**
 
 ✅ **platforms 字段**
 - Windows: 自动使用 .ps1
@@ -290,11 +319,24 @@ Claude:
 这个项目通过 **三层机制** 实现自动触发:
 
 1. **hooks/hooks.json** - 关键词匹配,自动拦截
-2. **rust-skill-eval-hook.sh/ps1** - 注入元认知指令
+2. **rust-skill-eval-hook.sh/ps1** - 注入元认知指令,强制调用 rust-router
 3. **rust-router** - 智能路由,双技能加载
+
+**触发链路:**
+```
+用户提问
+  → hooks.json 匹配关键词
+  → Hook 脚本注入指令 (包含 "Always invoke Skill(rust-router) first")
+  → Claude 执行 Skill(rust-router)
+  → rust-router 决策加载哪些技能
+  → 加载具体技能 (m0x-xxx, domain-xxx)
+  → 执行元认知追溯
+  → 输出结构化答案
+```
 
 整个过程对用户**完全透明**,只需正常提问,系统会自动:
 - ✅ 触发 Hook
+- ✅ 调用 rust-router 路由
 - ✅ 加载正确的技能
 - ✅ 执行元认知追溯
 - ✅ 输出结构化答案
