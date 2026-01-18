@@ -1,9 +1,17 @@
 #!/bin/bash
-# Rust Skills Setup Script
+# Rust Skills 设置脚本
 
-echo "Setting up Rust Skills for Claude Code..."
+# 确定插件目录路径
+CUSTOM_PATH="D:\soft-dev\code\rust\rust-skills"
+if [ -d "$CUSTOM_PATH" ]; then
+    PLUGIN_DIR="$CUSTOM_PATH"
+else
+    PLUGIN_DIR="$(dirname "$0")"
+fi
 
-# Create permissions file if it doesn't exist
+echo "正在为 Claude Code 设置 Rust Skills..."
+
+# 如果权限文件不存在则创建
 if [ ! -f ".claude/settings.local.json" ]; then
     mkdir -p .claude
     cat > .claude/settings.local.json << 'EOF'
@@ -15,13 +23,13 @@ if [ ! -f ".claude/settings.local.json" ]; then
   }
 }
 EOF
-    echo "Created .claude/settings.local.json with agent-browser permissions"
+    echo "已创建 .claude/settings.local.json 并添加 agent-browser 权限"
 else
-    echo ".claude/settings.local.json already exists, please add permissions manually:"
+    echo ".claude/settings.local.json 已存在，请手动添加权限："
     echo '  "Bash(agent-browser *)"'
 fi
 
-echo "Setup complete!"
+echo "设置完成！"
 echo ""
-echo "Usage:"
-echo "  claude --plugin-dir $(dirname "$0")"
+echo "使用方法："
+echo "  claude --plugin-dir $PLUGIN_DIR"
