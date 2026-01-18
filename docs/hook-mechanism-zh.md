@@ -54,7 +54,12 @@ Hook 触发:
 │        "matcher": "(?i)(rust|Web API|Send|...)",            │
 │        "hooks": [{                                           │
 │          "type": "command",                                  │
-│          "command": "...rust-skill-eval-hook.sh"            │
+│          "command": "...rust-skill-eval-hook.ps1",          │
+│          "platforms": ["win32"]                              │
+│        }, {                                                  │
+│          "type": "command",                                  │
+│          "command": "...rust-skill-eval-hook.sh",           │
+│          "platforms": ["darwin", "linux"]                    │
 │        }]                                                    │
 │      }]                                                      │
 │    }                                                         │
@@ -65,7 +70,9 @@ Hook 触发:
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│           .claude/hooks/rust-skill-eval-hook.sh             │
+│           根据平台自动选择 Hook 脚本                         │
+│  - Windows (win32): rust-skill-eval-hook.ps1                │
+│  - Linux/macOS (darwin/linux): rust-skill-eval-hook.sh      │
 │                                                              │
 │  输出元认知指令:                                             │
 │  - 强制识别层级和领域                                        │
@@ -99,7 +106,13 @@ Hook 触发:
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/.claude/hooks/rust-skill-eval-hook.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/.claude/hooks/rust-skill-eval-hook.ps1",
+            "platforms": ["win32"]
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/.claude/hooks/rust-skill-eval-hook.sh",
+            "platforms": ["darwin", "linux"]
           }
         ]
       }
@@ -117,6 +130,7 @@ Hook 触发:
 | `(?i)` | 忽略大小写 |
 | `type: command` | 执行 shell 命令 |
 | `${CLAUDE_PLUGIN_ROOT}` | 插件根目录变量 |
+| `platforms` | 平台限定: `["win32"]` 或 `["darwin", "linux"]` |
 
 ### 2. matcher 关键词设计
 
@@ -157,8 +171,9 @@ Hook 触发:
 )
 ```
 
-### 3. rust-skill-eval-hook.sh (强制脚本)
+### 3. rust-skill-eval-hook.sh/ps1 (强制脚本)
 
+**Linux/macOS (.sh)**:
 ```bash
 #!/bin/bash
 cat << 'EOF'
@@ -197,6 +212,46 @@ L1 Error → Trace UP to L3 → Find constraint → Trace DOWN to solution
 [Code following best practices]
 
 EOF
+```
+
+**Windows (.ps1)**:
+```powershell
+@'
+
+=== MANDATORY: META-COGNITION ROUTING ===
+
+CRITICAL: You MUST follow the COMPLETE meta-cognition framework.
+
+## STEP 1: IDENTIFY ENTRY LAYER + DOMAIN
+
+| Keywords in Question | Domain Skill to Load |
+|---------------------|---------------------|
+| Web API, HTTP, axum | domain-web |
+| payment, trading    | domain-fintech |
+| CLI, clap, terminal | domain-cli |
+
+**CRITICAL**: If domain keywords present, load BOTH L1 and L3 skills.
+
+## STEP 2: EXECUTE TRACING (MANDATORY)
+
+L1 Error → Trace UP to L3 → Find constraint → Trace DOWN to solution
+
+## STEP 3: MANDATORY OUTPUT FORMAT
+
+### Reasoning Chain
++-- Layer 1: [error]
+|       ^
++-- Layer 3: [domain constraint]
+|       v
++-- Layer 2: [design decision]
+
+### Domain Constraints Analysis
+[Reference domain skill rules]
+
+### Recommended Solution
+[Code following best practices]
+
+'@
 ```
 
 **关键点**:
@@ -333,7 +388,8 @@ rust-skills/
 │   └── hooks.json           ← Hook 触发配置
 ├── .claude/
 │   └── hooks/
-│       └── rust-skill-eval-hook.sh  ← 强制脚本
+│       ├── rust-skill-eval-hook.sh   ← 强制脚本 (Linux/macOS)
+│       └── rust-skill-eval-hook.ps1  ← 强制脚本 (Windows)
 └── .claude-plugin/
     └── plugin.json          ← 引用 hooks
 ```
@@ -506,7 +562,13 @@ for case in test_cases:
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/.claude/hooks/rust-skill-eval-hook.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/.claude/hooks/rust-skill-eval-hook.ps1",
+            "platforms": ["win32"]
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/.claude/hooks/rust-skill-eval-hook.sh",
+            "platforms": ["darwin", "linux"]
           }
         ]
       }
@@ -515,7 +577,9 @@ for case in test_cases:
 }
 ```
 
-### .claude/hooks/rust-skill-eval-hook.sh
+**注意**: 通过 `platforms` 字段实现跨平台支持，Claude Code 会根据运行平台自动选择对应的脚本。
+
+### .claude/hooks/rust-skill-eval-hook.sh/ps1
 
 ```bash
 #!/bin/bash

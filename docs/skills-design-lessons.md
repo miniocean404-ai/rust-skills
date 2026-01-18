@@ -185,6 +185,8 @@ skills/core-actionbook/SKILL.md
 }
 ```
 
+**Note**: The `.sh` path in hooks.json works cross-platform. Claude Code automatically selects the appropriate script (`.ps1` on Windows, `.sh` on Linux/macOS).
+
 ### Hook Script Design Principles
 
 1. **Force dual-skill loading**: When domain keywords present, load BOTH L1 and L3 skills
@@ -364,7 +366,8 @@ Solution: [follows Web best practices]
 | `skills/m0x-*/SKILL.md` | Layer 1 skills |
 | `skills/m1x-*/SKILL.md` | Layer 2 skills |
 | `skills/domain-*/SKILL.md` | Layer 3 skills |
-| `.claude/hooks/rust-skill-eval-hook.sh` | Hook script |
+| `.claude/hooks/rust-skill-eval-hook.sh` | Hook script (Linux/macOS) |
+| `.claude/hooks/rust-skill-eval-hook.ps1` | Hook script (Windows) |
 | `hooks/hooks.json` | Plugin hook config |
 | `.claude-plugin/plugin.json` | Plugin manifest |
 | `_meta/reasoning-framework.md` | Core reasoning docs |
@@ -401,8 +404,11 @@ Expected:
 ### Validation Script
 
 ```bash
-# Check skill structure
+# Check skill structure (Linux/macOS)
 bash scripts/quality-check.sh
+
+# Check skill structure (Windows)
+powershell scripts/quality-check.ps1
 
 # Check hook regex matching
 python tests/hook-matcher-test.py

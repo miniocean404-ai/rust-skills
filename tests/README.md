@@ -18,7 +18,8 @@ tests/
 │   └── agents.md        # Agent integration tests
 │
 └── validation/          # Validation scripts
-    └── validate-skills.sh
+    ├── validate-skills.sh
+    └── validate-skills.ps1  # Windows version
 ```
 
 ## Running Tests
@@ -40,8 +41,14 @@ claude -p "What's the latest version of tokio?"
 
 ### Validation Script
 
+**Linux/macOS:**
 ```bash
 ./tests/validation/validate-skills.sh
+```
+
+**Windows:**
+```powershell
+.\tests\validation\validate-skills.ps1
 ```
 
 ## Test Categories

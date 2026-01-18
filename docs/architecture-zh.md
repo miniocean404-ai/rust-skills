@@ -12,10 +12,11 @@
                                   ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │                        Hook 触发层                                   │
-│  hooks/hooks.json + .claude/hooks/rust-skill-eval-hook.sh           │
+│  hooks/hooks.json + .claude/hooks/rust-skill-eval-hook.sh/ps1       │
 │  - 400+ 关键词匹配 (中/英/错误码)                                    │
 │  - 强制元认知流程                                                    │
 │  - 强制输出格式                                                      │
+│  - 平台自动选择: win32→.ps1, darwin/linux→.sh                       │
 └─────────────────────────────────┬───────────────────────────────────┘
                                   │
                                   ▼
@@ -72,7 +73,8 @@ rust-skills/
 │
 ├── .claude/
 │   ├── hooks/
-│   │   └── rust-skill-eval-hook.sh  # 元认知强制脚本
+│   │   ├── rust-skill-eval-hook.sh   # 元认知强制脚本 (Linux/macOS)
+│   │   └── rust-skill-eval-hook.ps1  # 元认知强制脚本 (Windows)
 │   └── settings.json            # 本地设置
 │
 ├── hooks/
@@ -220,7 +222,9 @@ hooks/hooks.json
     │
     │ 匹配关键词
     ▼
-.claude/hooks/rust-skill-eval-hook.sh
+根据平台选择脚本:
+  - Windows (win32): .claude/hooks/rust-skill-eval-hook.ps1
+  - Linux/macOS (darwin/linux): .claude/hooks/rust-skill-eval-hook.sh
     │
     │ 注入元认知指令
     ▼
@@ -300,7 +304,9 @@ Skills (知识框架)          Agents (信息获取)
    匹配: "Web API", "Rc", "Send"
         │
         ▼
-3. Hook 脚本 (rust-skill-eval-hook.sh)
+3. Hook 脚本 (根据平台自动选择)
+   - Windows: rust-skill-eval-hook.ps1
+   - Linux/macOS: rust-skill-eval-hook.sh
    注入: 元认知指令 + 输出格式要求
         │
         ▼
@@ -601,7 +607,7 @@ description: "CRITICAL: Use for [domain]. Triggers on: keyword1, keyword2"
 | 层级 | 组件 | 职责 |
 |------|------|------|
 | 触发层 | hooks/hooks.json | 关键词匹配，触发流程 |
-| 强制层 | rust-skill-eval-hook.sh | 注入元认知指令 |
+| 强制层 | rust-skill-eval-hook.sh/ps1 (平台自动选择) | 注入元认知指令 |
 | 路由层 | rust-router | 识别层级，双技能加载 |
 | 知识层 | skills/* | 认知框架，决策指引 |
 | 扩展层 | ~/.claude/skills/ | 动态生成的 crate skills |

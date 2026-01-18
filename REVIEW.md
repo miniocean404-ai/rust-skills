@@ -190,7 +190,7 @@ m07-concurrency: E0277 (only for Send/Sync)
 
 ```bash
 #!/bin/bash
-# test-triggers.sh
+# test-triggers.sh (Linux/macOS)
 
 queries=(
   "我遇到了 E0382 错误"
@@ -206,6 +206,25 @@ for q in "${queries[@]}"; do
   claude -p "$q" --verbose 2>&1 | grep -E "skill|trigger"
   echo ""
 done
+```
+
+```powershell
+# test-triggers.ps1 (Windows)
+
+$queries = @(
+  "我遇到了 E0382 错误",
+  "tokio 最新版本",
+  "async await 怎么用",
+  "unsafe 代码怎么写",
+  "什么时候用 panic",
+  "Arc 和 Rc 区别"
+)
+
+foreach ($q in $queries) {
+  Write-Host "=== Query: $q ==="
+  claude -p $q --verbose 2>&1 | Select-String -Pattern "skill|trigger"
+  Write-Host ""
+}
 ```
 
 ---

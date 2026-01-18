@@ -112,6 +112,8 @@ EVALUATE → ACTIVATE → IMPLEMENT
 - `UserPromptSubmit`: 用户提交 prompt 时触发
 - `matcher`: 正则表达式，匹配时才执行 hook
 - `command`: 要执行的脚本路径（相对于项目根目录）
+  - Linux/macOS: `.claude/hooks/rust-skill-eval-hook.sh`
+  - Windows: `.claude/hooks/rust-skill-eval-hook.ps1`
 
 ### 2. Hook Script
 
